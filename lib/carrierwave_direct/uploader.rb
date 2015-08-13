@@ -42,12 +42,7 @@ module CarrierWaveDirect
     end
 
     def signature
-      Base64.encode64(
-        OpenSSL::HMAC.digest(
-          OpenSSL::Digest.new('sha256'),
-          aws_secret_access_key, policy
-        )
-      ).gsub("\n","")
+      Base64.encode64(OpenSSL::HMAC.digest('sha256', aws_secret_access_key, policy)).gsub("\n","")
     end
 
     def url_scheme_white_list
